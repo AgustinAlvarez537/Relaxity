@@ -84,7 +84,7 @@ namespace CardboardGestures.Gestures
             derechaReconocida = false;
             IzquierdaReconocida = false;
             reconociendo = true;
-            sensibilidad = 2.0f;
+            sensibilidad = 5 - sensibilidad;
         }
         
     }

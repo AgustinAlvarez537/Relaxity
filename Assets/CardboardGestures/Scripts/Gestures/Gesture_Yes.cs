@@ -8,13 +8,12 @@ namespace CardboardGestures.Gestures
     public class Gesture_Yes : AbstractGesture
     {
         public float tiempoMaximoParaReconocerGesto = 5.0f;
-        bool derechaReconocida;
-        bool IzquierdaReconocida;
+        bool arribaReconocido = false;
+        bool abajoReconocido = false;
         bool reconociendo;
         float sensibilidad; //que tan sensible es el gesto de "Yes" mientras mas grande el número menos sensible. [0 - 5 mas o menos]
         float tiempoMax = 5.0f;
-        bool arribaReconocido = false;
-        bool abajoReconocido = false;
+        
 
         public override string GestureName()
         {
@@ -77,7 +76,7 @@ namespace CardboardGestures.Gestures
 
             Input.gyro.enabled = true;
             reconociendo = true;
-            sensibilidad = 1.5f;
+			sensibilidad = 5 - sensibilidad;
             arribaReconocido = false;
             abajoReconocido = false;
 

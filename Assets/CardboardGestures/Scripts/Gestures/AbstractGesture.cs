@@ -5,14 +5,11 @@ namespace CardboardGestures.Gestures
 {
     public abstract class AbstractGesture : MonoBehaviour
     {
-
-        protected bool detected = false; // este booleano significa si el gesto que quería reconocer fue detectado (true) o no (false)
-
         public float tiempoDePersistencia;
-
         public GameObject debugInfo;
-
+        protected bool detected = false; // este booleano significa si el gesto que quería reconocer fue detectado (true) o no (false)
         protected float lastTime;
+
         public abstract string GestureName();
 
         public abstract bool Analyze();

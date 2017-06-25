@@ -16,19 +16,20 @@ namespace CardboardGestures.Gestures
             return "Look Up";
         }
 
-        void Start()
-        {
-            initialVector = new Vector3(0.0f, -1.0f, 0.0f);
-        }
-
         public override bool Analyze()
         {
             if ((orientation == DeviceOrientation.LandscapeLeft || orientation == DeviceOrientation.LandscapeRight)
-				&& initialVector.z + sensibilidad <= Input.acceleration.z)
+                && initialVector.z + sensibilidad <= Input.acceleration.z)
             {
                 return true;
             }
             return false;
         }
+
+        public void Start()
+        {
+            initialVector = new Vector3(0.0f, -1.0f, 0.0f);
+        }
+                
     }
 }

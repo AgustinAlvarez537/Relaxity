@@ -8,19 +8,18 @@ namespace CardboardGestures.Conditions
         public GameObject objeto2;
         public float range;
         public float oldRange;
+        public GameObject zonaEsferica;
+        public bool showZonaEsferica;
 
-        public GameObject globito;
-        public bool showGlobito;
-
-        // el range forma una esfera alrededor del centro del objeto que de ser traspasada hacia adentro hace que la función satisfied se evalue en true, de lo contrario en false
+        // el range forma una zonaEsferica alrededor del centro del objeto que de ser traspasada hacia adentro hace que la función satisfied se evalue en true, de lo contrario en false
 
         void Start()
         {
-			if (globito == null) 
+			if (zonaEsferica == null) 
 			{
-				globito = GameObject.CreatePrimitive (PrimitiveType.Sphere);
+				zonaEsferica = GameObject.CreatePrimitive (PrimitiveType.Sphere);
 			}
-            globito.SetActive(false);
+            zonaEsferica.SetActive(false);
         }
 
         public override bool satisfied()
