@@ -16,34 +16,34 @@ namespace CardboardGestures.Conditions
 
             myScript.range = EditorGUILayout.FloatField("Rango", myScript.range);
 
-			myScript.showZonaEsferica = EditorGUILayout.Toggle("Mostrar zona esferica (Rango)", myScript.showZonaEsferica);
+			myScript.showGlobito = EditorGUILayout.Toggle("Mostrar esfera (Rango)", myScript.showGlobito);
 
-            if (myScript.showZonaEsferica)
+            if (myScript.showGlobito)
             {
-                if (myScript.objeto2 != null && myScript.zonaEsferica == null)
+                if (myScript.objeto2 != null && myScript.globito == null)
                 {
-                    myScript.zonaEsferica = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                    myScript.zonaEsferica.name = "Range sphere";
-                    myScript.zonaEsferica.transform.position = myScript.objeto2.transform.position;
+                    myScript.globito = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    myScript.globito.name = "Range sphere";
+                    myScript.globito.transform.position = myScript.objeto2.transform.position;
                     
-                    myScript.zonaEsferica.transform.localScale = new Vector3(myScript.range * 2, myScript.range * 2, myScript.range * 2);
-                    //myScript.zonaEsferica.GetComponent<Renderer>().material.shader = Shader.Find("Unlit/Transparent");
+                    myScript.globito.transform.localScale = new Vector3(myScript.range * 2, myScript.range * 2, myScript.range * 2);
+                    //myScript.globito.GetComponent<Renderer>().material.shader = Shader.Find("Unlit/Transparent");
                     Color c = Color.yellow;
                     c.a = 0.3f;
-                    myScript.zonaEsferica.GetComponent<Renderer>().material.color = c;
-                    myScript.zonaEsferica.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                    myScript.globito.GetComponent<Renderer>().material.color = c;
+                    myScript.globito.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 }
                 if (myScript.range != myScript.oldRange)
                 {
                     myScript.oldRange = myScript.range;
-                    myScript.zonaEsferica.transform.position = myScript.objeto2.transform.position;
-                    myScript.zonaEsferica.transform.localScale = new Vector3(myScript.range * 2, myScript.range * 2, myScript.range * 2);
+                    myScript.globito.transform.position = myScript.objeto2.transform.position;
+                    myScript.globito.transform.localScale = new Vector3(myScript.range * 2, myScript.range * 2, myScript.range * 2);
                 }
             }
             else
             {
-                GameObject.DestroyImmediate(myScript.zonaEsferica);
-                myScript.zonaEsferica = null;
+                GameObject.DestroyImmediate(myScript.globito);
+                myScript.globito = null;
             }
         }
     }

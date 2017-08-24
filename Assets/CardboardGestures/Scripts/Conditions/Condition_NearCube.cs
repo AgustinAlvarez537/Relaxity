@@ -5,23 +5,26 @@ namespace CardboardGestures.Conditions
     public class Condition_NearCube : AbstractCondition
     {
         public GameObject objeto1;
-        public GameObject zonaCubica;
-        public bool showZonaCubica;
+
+        public GameObject cubito;
+        public bool showCubito;
+
         public float lado;
         public float oldLado;
+
         public Vector3 posicion;
 
         // el range forma una esfera alrededor del centro del objeto que de ser traspasada hacia adentro hace que la función satisfied se evalue en true, de lo contrario en false
 
         void Start()
         {
-			if (zonaCubica == null) 
+			if (cubito == null) 
 			{
-				zonaCubica = GameObject.CreatePrimitive (PrimitiveType.Cube);
-				zonaCubica.transform.position = posicion;
-				zonaCubica.transform.localScale = new Vector3(lado / 2, lado / 2, lado / 2);
+				cubito = GameObject.CreatePrimitive (PrimitiveType.Cube);
+				cubito.transform.position = posicion;
+				cubito.transform.localScale = new Vector3(lado / 2, lado / 2, lado / 2);
 			}
-            zonaCubica.GetComponent<MeshRenderer>().materials = new Material[0];
+            cubito.GetComponent<MeshRenderer>().materials = new Material[0];
         }
 
         public override bool satisfied()
@@ -33,13 +36,18 @@ namespace CardboardGestures.Conditions
 					BoxCollider c = objeto1.AddComponent<BoxCollider>();
 					c.size = new Vector3 (10, 10, 10);
 				}
-				if (zonaCubica.GetComponent<BoxCollider>().bounds.Intersects(objeto1.GetComponent<BoxCollider>().bounds))
+				if (cubito.GetComponent<BoxCollider>().bounds.Intersects(objeto1.GetComponent<BoxCollider>().bounds))
+               // if (OnTriggerEnter3D(objeto1.GetComponent<Collider>()))
                 {
                     return true;
                 }
             }
             return false;
         }
+       /* bool OnTriggerEnter3D(Collider collider)
+        {   
+            GameObject obj = collider.gameObject;
+        }*/
     }
     
 }

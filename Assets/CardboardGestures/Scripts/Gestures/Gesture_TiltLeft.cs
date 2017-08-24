@@ -11,7 +11,9 @@ namespace CardboardGestures.Gestures
     {
 
         public float inclinacion = 0.7f;
+
         public DeviceOrientation orientation;
+
         private Vector3 initialVector;
 
         public override string GestureName()

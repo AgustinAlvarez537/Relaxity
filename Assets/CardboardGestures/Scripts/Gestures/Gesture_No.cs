@@ -11,7 +11,7 @@ namespace CardboardGestures.Gestures
         bool derechaReconocida;
         bool IzquierdaReconocida;
         bool reconociendo;
-        public float sensibilidad; //que tan sensible es el gesto de "no" mientras mas grande el número menos sensible. [0 - 5 mas o menos]
+        float sensibilidad; //que tan sensible es el gesto de "no" mientras mas grande el número menos sensible. [0 - 5 mas o menos]
         float tiempoMax = 5.0f;
 
         public override string GestureName()
@@ -84,7 +84,7 @@ namespace CardboardGestures.Gestures
             derechaReconocida = false;
             IzquierdaReconocida = false;
             reconociendo = true;
-            sensibilidad = 5 - sensibilidad;
+            sensibilidad = 2.0f;
         }
         
     }

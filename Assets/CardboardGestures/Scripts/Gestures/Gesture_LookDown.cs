@@ -16,6 +16,11 @@ namespace CardboardGestures.Gestures
             return "Look Down";
         }
 
+        void Start()
+        {
+            initialVector = new Vector3(0.0f, -1.0f, 0.0f);
+        }
+
         public override bool Analyze()
         {
             if ((orientation == DeviceOrientation.LandscapeLeft || orientation == DeviceOrientation.LandscapeRight)
@@ -25,12 +30,5 @@ namespace CardboardGestures.Gestures
             }
             return false;
         }
-
-        public void Start()
-        {
-            initialVector = new Vector3(0.0f, -1.0f, 0.0f);
-        }
-
-        
     }
 }
