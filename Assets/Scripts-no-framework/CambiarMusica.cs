@@ -6,7 +6,7 @@ public class CambiarMusica : MonoBehaviour {
 
 	public List<AudioClip> canciones;
 	private int actual = 0;
-	public AudioSource source;
+	public AudioSource origenAudio;
 	public float velocidadRotacion = 2.0f;
 	
 	void Start()
@@ -19,7 +19,7 @@ public class CambiarMusica : MonoBehaviour {
 		if (Input.gyro.rotationRateUnbiased.y < -velocidadRotacion)
 		{
 			// reconocí el movimiento de la cabeza hacia la derecha
-			source.Pause();
+			origenAudio.Pause();
 			if (actual == canciones.Count - 1)
 			{
 				actual = 0;
@@ -28,8 +28,8 @@ public class CambiarMusica : MonoBehaviour {
 			{
 				actual++;
 			}
-			source.clip = canciones[actual];
-			source.Play();
+			origenAudio.clip = canciones[actual];
+			origenAudio.Play();
 		}
 	}
 }
