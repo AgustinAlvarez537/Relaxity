@@ -15,7 +15,7 @@ public class CambiarCielo : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.gyro.rotationRateUnbiased.y > velocidadRotacion)// reconocí el movimiento de la cabeza hacia la izquierda
+		if (Input.gyro.rotationRateUnbiased.y > velocidadRotacion)
 		{
 			if (actual == cielos.Count - 1)
 			{
