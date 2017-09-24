@@ -13,7 +13,7 @@ public class ChangeSkybox : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	public void ChangeSkyboxPls () {
+	public void ChangeSkyboxAction () {
 		if (currentSkybox == materiales.Count - 1) {
 			currentSkybox = 0;
 		}else{

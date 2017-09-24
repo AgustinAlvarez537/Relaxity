@@ -4,50 +4,43 @@ namespace CardboardGestures.Conditions
 {
     public class Condition_NearCube : AbstractCondition
     {
-        public GameObject objeto1;
+        public GameObject object1;
+        public GameObject cubicZone;
+        public bool showCubicZone;
+        public float cubeSide = 2.0f;
+		public float oldCubeSideValue;
+        public Vector3 positionCube;
 
-        public GameObject cubito;
-        public bool showCubito;
-
-        public float lado;
-        public float oldLado;
-
-        public Vector3 posicion;
-
-        // el range forma una esfera alrededor del centro del objeto que de ser traspasada hacia adentro hace que la función satisfied se evalue en true, de lo contrario en false
+        // el range forma un cubo alrededor del centro del objeto que de ser traspasada hacia adentro 
+		// hace que la función satisfied se evalue en true, de lo contrario false
 
         void Start()
         {
-			if (cubito == null) 
+			if (cubicZone == null) 
 			{
-				cubito = GameObject.CreatePrimitive (PrimitiveType.Cube);
-				cubito.transform.position = posicion;
-				cubito.transform.localScale = new Vector3(lado / 2, lado / 2, lado / 2);
+				cubicZone = GameObject.CreatePrimitive (PrimitiveType.Cube);
+				cubicZone.transform.position = positionCube;
+				cubicZone.transform.localScale = new Vector3(cubeSide, cubeSide, cubeSide);
 			}
-            cubito.GetComponent<MeshRenderer>().materials = new Material[0];
+            cubicZone.GetComponent<MeshRenderer>().materials = new Material[0];
         }
 
         public override bool satisfied()
         {
-            if (objeto1 != null)
+            if (object1 != null)
 			{	
-				if (objeto1.GetComponent<BoxCollider>() == null) 
+				if (object1.GetComponent<BoxCollider>() == null) 
 				{
-					BoxCollider c = objeto1.AddComponent<BoxCollider>();
+					BoxCollider c = object1.AddComponent<BoxCollider>();
 					c.size = new Vector3 (10, 10, 10);
 				}
-				if (cubito.GetComponent<BoxCollider>().bounds.Intersects(objeto1.GetComponent<BoxCollider>().bounds))
-               // if (OnTriggerEnter3D(objeto1.GetComponent<Collider>()))
+				if (cubicZone.GetComponent<BoxCollider>().bounds.Intersects(object1.GetComponent<BoxCollider>().bounds))
                 {
                     return true;
                 }
             }
             return false;
         }
-       /* bool OnTriggerEnter3D(Collider collider)
-        {   
-            GameObject obj = collider.gameObject;
-        }*/
     }
     
 }

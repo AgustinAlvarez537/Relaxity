@@ -14,7 +14,7 @@ public class ChangeMusic : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	public void ChangeMusicPls () {
+	public void ChangeMusicAction () {
 		audioSource.Pause();
 		if (currentMusic == canciones.Count - 1) {
 			currentMusic = 0;
