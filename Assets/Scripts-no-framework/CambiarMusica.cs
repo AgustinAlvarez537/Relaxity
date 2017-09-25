@@ -10,13 +10,15 @@ public class CambiarMusica : MonoBehaviour {
 	public float velocidadRotacion = 2.0f;
 
 	public float segundosEntreLlamadas = 2f;
-	bool reconocido;
-	float tiempoReconocido;
+	bool reconocido = false;
+	float tiempoReconocido = 0f;
 
 
 	void Start()
 	{
 		Input.gyro.enabled = true;
+		origenAudio.clip = canciones[actual];
+		origenAudio.Play();
 	}
 
 	void Update()

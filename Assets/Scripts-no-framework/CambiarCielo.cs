@@ -10,11 +10,12 @@ public class CambiarCielo : MonoBehaviour {
 	public float velocidadRotacion = 2.0f;
 
 	public float segundosEntreLlamadas = 2f;
-	bool reconocido;
-	float tiempoReconocido;
+	bool reconocido = false;
+	float tiempoReconocido = 0f; 
 
 	void Start () {
 		Input.gyro.enabled = true;
+		RenderSettings.skybox = cielos[actual];
 	}
 
 	void Update()
