@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class CambiarVolumen : MonoBehaviour {
 
-	public AudioMixer mainMixer;					//Used to hold a reference to the AudioMixer mainMixer
-	float aux = 0f;
+	public AudioMixer mainMixer;
 
 	public float inclinacionDerecha;
 	public float inclinacionIzquierda;
@@ -21,7 +20,9 @@ public class CambiarVolumen : MonoBehaviour {
 
 	void Start()
 	{
-		posicionInicial = new Vector3(0f, 1.0f, 0f);
+		posicionInicial = new Vector3(0f, -1.0f, 0f);
+		inclinacionDerecha = convertirGrados(inclinacionDerecha);
+		inclinacionIzquierda = convertirGrados(inclinacionIzquierda);
 	}
 
 	void Update()
@@ -29,13 +30,13 @@ public class CambiarVolumen : MonoBehaviour {
 		if (!reconocido)
 		{
 
-			if (posicionInicial.x - inclinacionDerecha > Input.acceleration.x)
+			if (posicionInicial.x + inclinacionDerecha < Input.acceleration.x)
 			{
 				reconocido = true;
 				tiempoReconocido = Time.time;
 				SubirVolumen();
 			}
-			if (posicionInicial.x + inclinacionIzquierda < Input.acceleration.x)
+			if (posicionInicial.x + inclinacionIzquierda > Input.acceleration.x)
 			{
 				reconocido = true;
 				tiempoReconocido = Time.time;
@@ -59,5 +60,10 @@ public class CambiarVolumen : MonoBehaviour {
 	public void BajarVolumen()
 	{
 		AudioListener.volume = AudioListener.volume + 0.1f;
+	}
+
+	private float convertirGrados(float grados)
+	{
+		return grados / 90f;
 	}
 }

@@ -9,24 +9,39 @@ public class CambiarCielo : MonoBehaviour {
 
 	public float velocidadRotacion = 2.0f;
 
+	public float segundosEntreLlamadas = 2f;
+	bool reconocido;
+	float tiempoReconocido;
+
 	void Start () {
 		Input.gyro.enabled = true;
 	}
 
 	void Update()
 	{
-		if (Input.gyro.rotationRateUnbiased.y > velocidadRotacion)
+		if (!reconocido)
 		{
-			if (actual == cielos.Count - 1)
+			if (Input.gyro.rotationRateUnbiased.y > velocidadRotacion)
 			{
-				actual = 0;
+				if (actual == cielos.Count - 1)
+				{
+					actual = 0;
+				}
+				else
+				{
+					actual++;
+				}
+				RenderSettings.skybox = cielos[actual];
+				reconocido = true;
+				tiempoReconocido = Time.time;
 			}
-			else
-			{
-				actual++;
-			}
-			RenderSettings.skybox = cielos[actual];
 		}
-		
+		else
+		{
+			if (Time.time - tiempoReconocido < segundosEntreLlamadas)
+			{
+				reconocido = false;
+			}
+		}
 	}
 }

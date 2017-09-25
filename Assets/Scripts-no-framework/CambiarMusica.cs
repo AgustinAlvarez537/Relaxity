@@ -8,7 +8,12 @@ public class CambiarMusica : MonoBehaviour {
 	private int actual = 0;
 	public AudioSource origenAudio;
 	public float velocidadRotacion = 2.0f;
-	
+
+	public float segundosEntreLlamadas = 2f;
+	bool reconocido;
+	float tiempoReconocido;
+
+
 	void Start()
 	{
 		Input.gyro.enabled = true;
@@ -16,20 +21,32 @@ public class CambiarMusica : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.gyro.rotationRateUnbiased.y < -velocidadRotacion)
+		if (!reconocido)
 		{
-			// reconocí el movimiento de la cabeza hacia la derecha
-			origenAudio.Pause();
-			if (actual == canciones.Count - 1)
+
+			if (Input.gyro.rotationRateUnbiased.y < -velocidadRotacion)
 			{
-				actual = 0;
+				origenAudio.Pause();
+				if (actual == canciones.Count - 1)
+				{
+					actual = 0;
+				}
+				else
+				{
+					actual++;
+				}
+				origenAudio.clip = canciones[actual];
+				origenAudio.Play();
+				reconocido = true;
+				tiempoReconocido = Time.time;
 			}
-			else
+		}
+		else
+		{
+			if (Time.time - tiempoReconocido < segundosEntreLlamadas)
 			{
-				actual++;
+				reconocido = false;
 			}
-			origenAudio.clip = canciones[actual];
-			origenAudio.Play();
 		}
 	}
 }
