@@ -39,7 +39,7 @@ public class CambiarCielo : MonoBehaviour {
 		}
 		else
 		{
-			if (Time.time - tiempoReconocido < segundosEntreLlamadas)
+			if (Time.time - tiempoReconocido > segundosEntreLlamadas)
 			{
 				reconocido = false;
 			}
